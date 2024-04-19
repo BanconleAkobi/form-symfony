@@ -1,0 +1,32 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Register{% endblock %}
+
+{% block body %}
+<div class="form-container" style="max-width: 800px; margin: auto; padding: 20px; border: 1px solid #ccc; border-radius: 5px;">
+    <h1 class="text-center">MAGIC_BANCONLE</h1>
+    <h2 class="text-center" style="color:red">Veuillez vous enregistrer avant d'accéder à ma page</h2>
+
+    {% for flash_error in app.flashes('verify_email_error') %}
+        <div class="alert alert-danger" role="alert">{{ flash_error }}</div>
+    {% endfor %}
+    
+    {{ form_errors(registrationForm) }}
+    
+    {{ form_start(registrationForm) }}
+        <div class="mb-3">
+            {{ form_label(registrationForm.email, 'Email', {'label_attr': {'class': 'font-weight-bold'}}) }}
+            {{ form_widget(registrationForm.email, {'attr': {'class': 'form-control', 'style': 'margin-top: 5px;'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_label(registrationForm.plainPassword, 'Password', {'label_attr': {'class': 'font-weight-bold'}}) }}
+            {{ form_widget(registrationForm.plainPassword, {'attr': {'class': 'form-control', 'style': 'margin-top: 5px;'}}) }}
+        </div>
+        <div class="mb-3">
+            {{ form_row(registrationForm.agreeTerms, {'attr': {'class': 'form-check-input'}}) }}
+        </div>
+        
+        <br><button type="submit" class="btn btn-primary w-100" style="font-weight:bold; size:"6">S'enregistrer</button>
+    {{ form_end(registrationForm) }}
+</div>
+{% endblock %}
